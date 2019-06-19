@@ -22,6 +22,7 @@ class Game {
     this.canvasDOMEl.setAttribute("width", this.canvasW)
     this.start()
   }
+
   start = () => {
     this.fps = 60;
     this.reset();
@@ -46,6 +47,8 @@ class Game {
   drawAll = () => {
     this.background.draw()
     this.player.drawPlayer()
+    this.player.drawBullet()
+
   }
 
 
@@ -54,7 +57,9 @@ class Game {
   }
   moveAll = () => {
     this.background.move();
-    this.player.playerMovement();
+    this.player.playerJump();
+    this.player.gameListeners()
+    this.player.playerCrawl()
   }
 }
 

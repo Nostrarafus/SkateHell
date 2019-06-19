@@ -9,7 +9,7 @@ class Player {
       arrowDown: 40
     }
     this.x = this.canvasW / 100;
-    this.y0 = this.canvasH * 0.7;
+    this.y0 = this.canvasH * 0.65;
     this.y = this.y0;
     this.vy = 0;
     this.img = new Image();
@@ -20,7 +20,7 @@ class Player {
     this.sW = 84;
     this.sH = 100;
     this.img.upFrames = 0;
-    this.img.frameIndex = 2;
+    this.frameIndex = 2;
     this.img.sx0 = 38;
     this.img.sx = this.img.sx0;
     this.img.sy0 = 434
@@ -28,14 +28,16 @@ class Player {
     this.gravity = 0.4;
     this.canJump = true
     this.bullets = [];
+    this.normalSx = 33
+    this.normalSy = 325
   }
   drawPlayer = () => {
 
-    if (this.img.frameIndex === 0) {
+    if (this.frameIndex === 0) {
       this.ctx.drawImage(
         this.img,
-        33,
-        219,
+        this.normalSx,
+        this.normalSy,
         this.sW,
         this.sH,
         this.x,
@@ -44,7 +46,7 @@ class Player {
         this.imgH
       );
     }
-    if (this.img.frameIndex === 2) {
+    if (this.frameIndex === 2) {
 
       this.ctx.drawImage(
         this.img,
@@ -68,7 +70,7 @@ class Player {
         case 38:
           if (this.y === this.y0) {
             this.canJump = true
-            this.img.frameIndex = 2
+            this.frameIndex = 2
             this.y -= 5
             this.vy -= 15
           }
@@ -76,8 +78,8 @@ class Player {
         case 40:
           if (this.y === this.y0) {
             this.canJump = false
-            this.img.frameIndex = 0
-            this.vy += 8
+            this.frameIndex = 0
+            this.vy += 10
             this.y += 2
           }
           break;
@@ -89,30 +91,28 @@ class Player {
   }
 
   shoot = () => {
-    console.log("holaa")
     let bullet = new Bullet(
-      this.x + this.w,
-      this.y + this.h / 2,
+      this.x + this.sW,
+      this.y + this.sH / 2,
       this.y0,
-      this.h,
+      this.sH,
       this.ctx
     );
 
     this.bullets.push(bullet);
+
   }
 
   drawBullet = () => {
-    console.log("hola")
+    
     this.bullets = this.bullets.filter(bullet => {
       return bullet.x < this.canvasW;
     });
-    console.log("hola")
-    this.bullets.forEach(function (bullet) {
-      console.log("holaa")
+    
+    this.bullets.forEach( (bullet) => {
       bullet.draw();
       bullet.move();
     });
-
   }
 
   playerJump = () => {
@@ -121,18 +121,21 @@ class Player {
       if (this.y >= this.y0) {
         this.vy = 0;
         this.y = this.y0;
+        this.frameIndex = 0
       } else {
         this.vy += this.gravity;
         this.y += this.vy;
       }
     }
   }
+
   playerCrawl = () => {
     this.gameListeners()
     if (this.canJump === false) {
       if (this.y <= this.y0) {
         this.vy = 0;
         this.y = this.y0;
+        this.frameIndex = 0
       } else {
         this.vy -= this.gravity;
         this.y += this.vy;

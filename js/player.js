@@ -12,9 +12,9 @@ class Player {
     this.y0 = this.canvasH * 0.6;
     this.y = this.y0;
     this.vy = 0;
-    this.imgW = 84;
+    this.imgW = 80;
     this.imgH = 103;
-    this.sW = 84;
+    this.sW = 97;
     this.sH = 103;
     this.gravity = 0.4;
     this.canJump = true
@@ -34,9 +34,9 @@ class Player {
     this.drawJumpImage = false
     this.img3 = new Image();
     this.img3.src = "img/fatskater.png"
-    this.img3.frames = 2;
+    this.img3.frames = 4;
     this.img3.frameIndex = 0;
-    this.img3.Sy = 471
+    this.img3.Sy = 333
     this.drawCrawlImage = false
 
   }
@@ -76,9 +76,9 @@ class Player {
     if (this.drawCrawlImage === true) {
       this.ctx.drawImage(
         this.img3,
-        this.img3.frameIndex * Math.floor(this.img3.width / this.img3.frames),
+        this.img3.frameIndex * 88,
         this.img3.Sy,
-        Math.floor(this.img3.width / this.img3.frames),
+        this.sW,
         this.sH,
         this.x,
         this.y,
@@ -99,15 +99,15 @@ class Player {
       if (this.img1.frameIndex > 3) {
         this.img1.frameIndex = 0;
       }
-      // if (this.img2.frameIndex > 4 && this.img2.Sy0 === this.img2.Sy) {
-      //   this.img2.frameIndex = 0;
-      //   this.img2.Sy += 103}
-      //   if (this.img2.frameIndex > 1) {
-      //     this.img2.frameIndex = 0
-      //     this.img2.Sy = this.img2.Sy0
-      //   }
-      // }
-      if (this.img3.frameIndex > 1) {
+      if (this.img2.frameIndex > 4) {
+        this.img2.frameIndex = 0;
+        this.img2.Sy += 103
+        if (this.img2.Sy0 < this.img2.Sy) {
+          this.img2.frameIndex = 0
+          this.img2.Sy = this.img2.Sy0
+        }
+      }
+      if (this.img3.frameIndex > 3) {
         this.img3.frameIndex = 0;
       }
     }
@@ -139,6 +139,7 @@ class Player {
         case 32:
           this.drawJumpImage = false
           this.drawCrawlImage = false
+          this.drawNormalImage = true
           this.shoot()
           break;
       }

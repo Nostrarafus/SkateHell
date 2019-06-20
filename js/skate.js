@@ -71,6 +71,10 @@ class Game {
   stop = () => {
     clearInterval(this.intervalId)
   }
+  stopWigum = () => {
+    clearInterval(this.intervalId)
+  }
+  gameOverWigum = () => {}
 
   gameOver = () => {
     this.stop()
@@ -93,8 +97,9 @@ class Game {
     return this.obstacles.some(obstacle => {
       return (
         this.player.x + this.player.imgW - 20 >= obstacle.x &&
-        this.player.x <= obstacle.x + obstacle.w &&
-        this.player.y + (this.player.sH - 5) >= obstacle.y && this.player.y <= obstacle.y + obstacle.h - 10
+        this.player.x -5 <= obstacle.x + obstacle.w &&
+        this.player.y + this.player.sH + 5 >= obstacle.y && 
+        this.player.y <= obstacle.y + obstacle.h - 10
       )
     })
   }
@@ -103,9 +108,9 @@ class Game {
     return this.randomObstacles.some(obstacle => {
       return (
         this.player.x + this.player.imgW - 15 >= obstacle.x &&
-        this.player.x <= obstacle.x + obstacle.w &&
-        this.player.y + (this.player.sH - 5) >= obstacle.y &&
-        this.player.y <= obstacle.y + obstacle.h - 5
+        this.player.x - 5 <= obstacle.x + obstacle.w &&
+        this.player.y + (this.player.sH + 10) >= obstacle.y &&
+        this.player.y <= obstacle.y + obstacle.h -10
       )
     })
   }
@@ -114,9 +119,9 @@ class Game {
     return this.randomImpObs.some(obstacle => {
       return (
         this.player.x + this.player.imgW - 20 >= obstacle.x &&
-        this.player.x <= obstacle.x + obstacle.w &&
-        this.player.y + (this.player.sH - 5) >= obstacle.y &&
-        this.player.y <= obstacle.y + obstacle.h - 5
+        this.player.x - 5 <= obstacle.x + obstacle.w &&
+        this.player.y + (this.player.sH + 10) >= obstacle.y &&
+        this.player.y <= obstacle.y + obstacle.h - 10
       )
     })
   }

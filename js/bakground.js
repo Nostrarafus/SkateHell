@@ -2,11 +2,11 @@ class Background {
   constructor(w, h, ctx) {
     this.ctx = ctx
     this.img = new Image();
-    this.img.src = "img/background_ciudad.png";
+    this.img.src = "img/storyblocks-modern-hospital-clinic-and-bank-building-front-view-of-financial-and-medical-institution-exterior-urban-city-panorama-skyscrapers-cityscape-background-skyline-flat-horizontal-banner-vector_Bc7RO7xI4_SB_PM.jpg";
     this.x = 0;
     this.y = 0;
-    this.h = h;
-    this.w = w;
+    this.h = 800;
+    this.w = 2768;
     this.dx = 10;
   }
 

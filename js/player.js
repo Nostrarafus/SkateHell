@@ -12,10 +12,10 @@ class Player {
     this.y0 = this.canvasH * 0.6;
     this.y = this.y0;
     this.vy = 0;
-    this.imgW = 80;
-    this.imgH = 120;
+    this.imgW = 84;
+    this.imgH = 103;
     this.sW = 84;
-    this.sH = 100;
+    this.sH = 103;
     this.gravity = 0.4;
     this.canJump = true
     this.bullets = [];
@@ -23,13 +23,14 @@ class Player {
     this.img1.src = "img/fatskater.png"
     this.img1.frames = 4;
     this.img1.frameIndex = 0;
-    this.img1.Sy = 330
+    this.img1.Sy = 0
     this.drawNormalImage = true
     this.img2 = new Image();
     this.img2.src = "img/fatskater.png"
-    this.img2.frames = 3;
+    this.img2.frames = 7;
     this.img2.frameIndex = 0;
-    this.img2.Sy = 360
+    this.img2.Sy0 = 114
+    this.img2.Sy = this.img2.Sy0
     this.drawJumpImage = false
     this.img3 = new Image();
     this.img3.src = "img/fatskater.png"
@@ -41,27 +42,29 @@ class Player {
   }
 
 
+
   drawPlayer = (framescounter) => {
     this.gameListeners()
+
     if (this.drawNormalImage === true)
-    this.ctx.drawImage(
-      this.img1,
-      this.img1.frameIndex * Math.floor(this.img1.width / this.img1.frames),
-      this.img1.Sy,
-      Math.floor(this.img1.width / this.img1.frames),
-      this.sH,
-      this.x,
-      this.y,
-      this.imgW,
-      this.imgH
-    );
+      this.ctx.drawImage(
+        this.img1,
+        this.img1.frameIndex * 88,     //Math.floor(this.img1.width / this.img1.frames),
+        this.img1.Sy,
+        this.sW,        // Math.floor(this.img1.width / this.img1.frames),
+        this.sH,
+        this.x,
+        this.y,
+        this.imgW,
+        this.imgH
+      );
 
     if (this.drawJumpImage === true) {
       this.ctx.drawImage(
         this.img2,
-        this.img2.frameIndex * Math.floor(this.img2.width / this.img2.frames),
+        this.img2.frameIndex * 88,
         this.img2.Sy,
-        Math.floor(this.img2.width / this.img2.frames),
+        this.sW,
         this.sH,
         this.x,
         this.y,
@@ -96,9 +99,14 @@ class Player {
       if (this.img1.frameIndex > 3) {
         this.img1.frameIndex = 0;
       }
-      if (this.img2.frameIndex > 4) {
-        this.img2.frameIndex = 0;
-      }
+      // if (this.img2.frameIndex > 4 && this.img2.Sy0 === this.img2.Sy) {
+      //   this.img2.frameIndex = 0;
+      //   this.img2.Sy += 103}
+      //   if (this.img2.frameIndex > 1) {
+      //     this.img2.frameIndex = 0
+      //     this.img2.Sy = this.img2.Sy0
+      //   }
+      // }
       if (this.img3.frameIndex > 1) {
         this.img3.frameIndex = 0;
       }
@@ -129,8 +137,8 @@ class Player {
           }
           break;
         case 32:
-            this.drawJumpImage = false
-            this.drawCrawlImage = false
+          this.drawJumpImage = false
+          this.drawCrawlImage = false
           this.shoot()
           break;
       }

@@ -1,8 +1,8 @@
 class RandomObstacle {
   constructor(w, playerY, playerH, ctx) {
     this.ctx = ctx;
-    this.w = 70;
-    this.h = this.w * 3;
+    this.w = 150;
+    this.h = this.w;
     this.dx = 10;
     this.x = w;
     this.y = (playerY + playerH - this.h + 5) + this.getRandomInt(-100,150)

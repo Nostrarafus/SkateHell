@@ -1,8 +1,8 @@
 class RandomImpObs {
   constructor(w, playerY, playerH, ctx) {
     this.ctx = ctx;
-    this.w = 30;
-    this.h = this.w * 5;
+    this.w = 150;
+    this.h = this.w;
     this.dx = 10;
     this.x = w;
     this.y =  this.getRandomInt(100,400)

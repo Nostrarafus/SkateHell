@@ -2,7 +2,7 @@
 class Obstacle {
   constructor(w, playerY, playerH, ctx) {
     this.ctx = ctx;
-    this.w = 15;
+    this.w = 20;
     this.h = this.w * 10;
     this.dx = 10;
     this.x = w;

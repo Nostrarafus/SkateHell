@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,39 @@
   <script src="js/randomObstacle.js"></script>
   <script src="js/skate.js"></script>
   <script src="js/juego.js"></script>
+  <script src="js/scoreboard.js"></script>
+
 </head>
 
 <body>
-    <button id="start-button">StartGame</button>
+
+
+  <div class="wrap">
+    <h1>Skate Hell!</h1>
+  </div>
+
+  <div class="game-intro">
+
+    <div id="container">
+      Instructions
+      <div id="flip">
+        <div>
+          <div>Use the up arrow to jump</div>
+        </div>
+        <div>
+          <div>spacebar to shoot!</div>
+        </div>
+        <div>
+          <div>down arrow to crawl</div>
+        </div>
+      </div>
+      Enjoy!
+    </div>
+    <!-- <p class = "instructions">Use the up arrow to jump, down  arrow to crawl and the spacebar to shoot! </p> -->
+  </div>
+  <button id="start-button">StartGame</button>
   <canvas id="canvas"></canvas>
-  
+
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 class Bullet {
-  constructor(x, y, y0, h, ctx) {
+  constructor(x, y, y0, h, ctx, audio1) {
     this.x = x;
     this.y = y;
     this.y0 = y0
@@ -9,6 +9,8 @@ class Bullet {
     this.vx = 15;
     this.vy = 1;
     this.gravity = 0.25;
+    this.audio1 = audio1
+    
   }
 
   draw = () => {
@@ -17,6 +19,7 @@ class Bullet {
     this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
     this.ctx.fill();
     this.ctx.closePath();
+ 
   }
 
   move = () => {
@@ -25,3 +28,4 @@ class Bullet {
 
   }
 }
+

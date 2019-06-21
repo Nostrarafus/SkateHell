@@ -38,6 +38,7 @@ class Player {
     this.img3.frameIndex = 0;
     this.img3.Sy = 333
     this.drawCrawlImage = false
+    this.audio2 = new Audio("//img/40_smith_wesson_8x_gunshot-mike-koenig.mp3");
 
   }
 
@@ -152,9 +153,10 @@ class Player {
       this.y + this.sH / 2,
       this.y0,
       this.sH,
-      this.ctx
+      this.ctx,
+      this.audio2 
     );
-
+    this.audio2.play();
     this.bullets.push(bullet);
 
   }

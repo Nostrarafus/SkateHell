@@ -5,7 +5,7 @@ class RandomImpObs {
     this.h = this.w;
     this.dx = 10;
     this.x = w;
-    this.y =  this.getRandomInt(100,400)
+    this.y =  this.getRandomInt(100,600)
     this.img = new Image();
     this.img.src = "img/chiefwigum.png";
   }

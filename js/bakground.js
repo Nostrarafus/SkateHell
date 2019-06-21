@@ -33,3 +33,6 @@ class Background {
     if (this.x < -this.w) this.x = 0;
   }
 }
+class Scoreboard {
+  
+}

@@ -3,7 +3,7 @@ class Game {
     this.canvasDOMEl = undefined;
     this.ctx = undefined;
     this.canvasW = 1200;
-    this.canvasH = 800;
+    this.canvasH = 750;
     this.intervalId = undefined;
     this.framesCounter = 0;
     this.intervalId = undefined;
@@ -19,6 +19,8 @@ class Game {
     this.destroyedObstacle = null
     this.destroyedBullet = null
     this.normalSprite = 0
+    this.audio = undefined
+    
   }
 
   init = (id) => {
@@ -27,9 +29,13 @@ class Game {
     this.canvasDOMEl.setAttribute("height", this.canvasH);
     this.canvasDOMEl.setAttribute("width", this.canvasW)
     this.start()
+    
   }
 
   start = () => {
+    this.disableButton()
+    this.audio = new Audio("img/Black_Eyed_Peas_-_Pump_It.mp3");
+    this.audio.play();
     this.fps = 60;
     this.reset();
     this.intervalId = setInterval(() => {
@@ -43,7 +49,7 @@ class Game {
       if (this.framesCounter % 160 === 0) this.generateRandomImpObs();
 
 
-
+      window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)
 
       this.drawAll();
       this.moveAll();
@@ -54,10 +60,10 @@ class Game {
         this.gameOver();
       }
       if (this.isCollisionrandomObstacle()) {
-        this.gameOver();
+        this.gameOverFlanders();
       }
       if (this.isCollisionrandomImpObs()) {
-        this.gameOver();
+        this.gameOverWigum();
       }
       if (this.isBulletCollision()) {
         this.destroyrandomObs()
@@ -70,15 +76,29 @@ class Game {
   }
   stop = () => {
     clearInterval(this.intervalId)
+    document.location.reload()
   }
   stopWigum = () => {
     clearInterval(this.intervalId)
   }
-  gameOverWigum = () => {}
+  gameOverWigum = () => {
+    this.stop()
+    if (confirm(`¿De verdad te ha matado Wigum? ¿Lo vuelves a intentar, PAQUETE?`)) {
+      this.reset()
+      this.start()
+    }
+  }
+  gameOverFlanders = () => {
+    this.stop()
+    if (confirm(`Hola holita noob (¿De verdad no has podido con Flanders?) ¿Lo vuelves a intentar, novatillo?`)) {
+      this.reset()
+      this.start()
+    }
+  }
 
   gameOver = () => {
     this.stop()
-    if (confirm(`Eres una verguenza para tu familia, lo vuelves a intentar?`)) {
+    if (confirm(`Eres una verguenza para tu familia  ¿Lo vuelves a intentar, NOOB?`)) {
       this.reset()
       this.start()
     }
@@ -97,9 +117,9 @@ class Game {
     return this.obstacles.some(obstacle => {
       return (
         this.player.x + this.player.imgW - 20 >= obstacle.x &&
-        this.player.x -5 <= obstacle.x + obstacle.w &&
-        this.player.y + this.player.sH + 5 >= obstacle.y && 
-        this.player.y <= obstacle.y + obstacle.h - 10
+        this.player.x + 10 <= obstacle.x + obstacle.w &&
+        this.player.y + this.player.sH >= obstacle.y &&
+        this.player.y <= obstacle.y + obstacle.h - 30
       )
     })
   }
@@ -108,9 +128,9 @@ class Game {
     return this.randomObstacles.some(obstacle => {
       return (
         this.player.x + this.player.imgW - 15 >= obstacle.x &&
-        this.player.x - 5 <= obstacle.x + obstacle.w &&
-        this.player.y + (this.player.sH + 10) >= obstacle.y &&
-        this.player.y <= obstacle.y + obstacle.h -10
+        this.player.x + 50 <= obstacle.x + obstacle.w &&
+        this.player.y + (this.player.sH + 15) >= obstacle.y &&
+        this.player.y <= obstacle.y + obstacle.h - 40
       )
     })
   }
@@ -118,10 +138,10 @@ class Game {
   isCollisionrandomImpObs = () => {
     return this.randomImpObs.some(obstacle => {
       return (
-        this.player.x + this.player.imgW - 20 >= obstacle.x &&
-        this.player.x - 5 <= obstacle.x + obstacle.w &&
-        this.player.y + (this.player.sH + 10) >= obstacle.y &&
-        this.player.y <= obstacle.y + obstacle.h - 10
+        this.player.x + this.player.imgW - 40 >= obstacle.x &&
+        this.player.x + 100 <= obstacle.x + obstacle.w &&
+        this.player.y + (this.player.sH) >= obstacle.y &&
+        this.player.y <= obstacle.y + obstacle.h - 50
       )
     })
   }
@@ -138,6 +158,7 @@ class Game {
       }
     })
   }
+
   destroyObs = () => {
     this.randomObstacles.forEach((obstacle, idx) => {
       if (this.isBulletCollision()) {
@@ -172,7 +193,7 @@ class Game {
     this.randomObstacles.forEach((obstacle) => {
 
       obstacle.draw();
-     
+
     })
     this.randomImpObs.forEach((obstacle) => {
       obstacle.draw();
@@ -228,8 +249,9 @@ class Game {
       new RandomImpObs(this.canvasW, this.player.y0, this.player.sH, this.ctx)
     );
   }
-
-
+   disableButton = () =>{
+		document.getElementById("start-button").disabled = true;
+   }
 }
 
 

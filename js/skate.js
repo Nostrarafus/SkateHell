@@ -29,7 +29,7 @@ class Game {
     this.canvasDOMEl.setAttribute("height", this.canvasH);
     this.canvasDOMEl.setAttribute("width", this.canvasW)
     this.start()
-    
+
   }
 
   start = () => {
@@ -69,6 +69,9 @@ class Game {
         this.destroyrandomObs()
         this.destroyBullet()
       };
+      if (this.framesCounter % 30) {
+        this.scoreBoard.increaseScore()
+      }
 
 
     }, 1000 / this.fps)
@@ -107,6 +110,7 @@ class Game {
   reset = () => {
     this.background = new Background(this.canvasW + 500, this.canvasH, this.ctx);
     this.player = new Player(this.canvasW, this.canvasH, this.ctx);
+    this.scoreBoard = new scoreBoard(this.ctx)
     this.obstacles = []
     this.randomObstacles = []
     this.randomImpObs = []
@@ -198,6 +202,8 @@ class Game {
     this.randomImpObs.forEach((obstacle) => {
       obstacle.draw();
     })
+    this.scoreBoard.drawScoreBoard()
+    this.scoreBoard.drawScoreMssg()
   }
 
   clear = () => {
@@ -249,9 +255,9 @@ class Game {
       new RandomImpObs(this.canvasW, this.player.y0, this.player.sH, this.ctx)
     );
   }
-   disableButton = () =>{
-		document.getElementById("start-button").disabled = true;
-   }
+  disableButton = () => {
+    document.getElementById("start-button").disabled = true;
+  }
 }
 
 

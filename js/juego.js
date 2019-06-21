@@ -1,10 +1,10 @@
 let game = new Game
-window.onload = function() {
-  document.getElementById("start-button").onclick = function() {
+window.onload = () => {
+  document.getElementById("start-button").onclick = () => {
     startGame();
   };
 
-  function startGame() {
+   startGame = () => {
     game.init("canvas")
   }
 };

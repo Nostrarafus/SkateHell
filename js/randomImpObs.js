@@ -26,9 +26,7 @@ class RandomImpObs {
       this.w,
       this.h
     )
-  // this.ctx.fillStyle = "black";
-   // this.ctx.fillRect(this.x, this.y, this.w, this.h);
-    
+  
   }
   move = () => {
     this.x -= this.dx;

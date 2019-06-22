@@ -41,10 +41,10 @@ class Game {
     this.intervalId = setInterval(() => {
       this.clear();
       this.framesCounter++;
-      if (this.framesCounter > 1000) {
+      if (this.framesCounter > 3500) {
         this.framesCounter = 0;
       }
-      if (this.framesCounter % 100 === 0) this.generateObstacle();
+      if (this.framesCounter % 80 === 0) this.generateObstacle();
       if (this.framesCounter % 100 === 0) this.generateRandomObstacle();
       if (this.framesCounter % 160 === 0) this.generateRandomImpObs();
 

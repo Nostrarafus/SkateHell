@@ -20,14 +20,14 @@ class scoreBoard {
   }
   drawScoreMssg = () => {
   
-     if (this.score == 2000){
+     if (this.score > 2000){
  
        this.ctx.font = `80px Comic Sans MS`;
  
        this.ctx.fillStyle = `green`;
  
  
-         this.ctx.fillText(`You are a fucking boss` , 50,500);
+         this.ctx.fillText(`You are a fucking boss` , 50,100);
      }}
  
   getScore = () => {

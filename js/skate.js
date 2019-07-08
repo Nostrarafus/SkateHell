@@ -46,7 +46,7 @@ class Game {
       }
       if (this.framesCounter % 100 === 0) this.generateObstacle();
       if (this.framesCounter % 100 === 0) this.generateRandomObstacle();
-      if (this.framesCounter % 160 === 0) this.generateRandomImpObs();
+      if (this.framesCounter % 100 === 0) this.generateRandomImpObs();
 
 
       window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight)

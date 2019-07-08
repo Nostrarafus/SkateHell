@@ -34,3 +34,22 @@ class Background {
   }
 }
 
+
+
+
+var num = 123456;
+
+
+function persistence(num) {
+ var digits = num.toString().split('');
+ var arr = []
+ var x
+ x = arr.push(digits.map(Number))
+num = x.map((num) => num * num);
+}
+persistence(num)
+
+
+
+
+console.log(num)

@@ -20,7 +20,7 @@ class scoreBoard {
   }
   drawScoreMssg = () => {
   
-     if (this.score == 2000){
+     if (this.score >= 1000){
  
        this.ctx.font = `80px Comic Sans MS`;
  

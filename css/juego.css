@@ -127,7 +127,7 @@ button:active {
 }
 
 #flip div:first-child {
-  animation: show 10s linear infinite;
+  animation: show 15s linear infinite;
 }
 
 #flip div div {

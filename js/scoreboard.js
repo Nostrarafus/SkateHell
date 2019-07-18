@@ -27,7 +27,7 @@ class scoreBoard {
        this.ctx.fillStyle = `green`;
  
  
-         this.ctx.fillText(`You are a fucking boss` , 50,500);
+         this.ctx.fillText(`You are a fucking boss` , 50,100);
      }}
  
   getScore = () => {

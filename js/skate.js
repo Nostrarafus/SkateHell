@@ -4,7 +4,6 @@ class Game {
     this.ctx = undefined;
     this.canvasW = 1200;
     this.canvasH = 750;
-    this.intervalId = undefined;
     this.framesCounter = 0;
     this.intervalId = undefined;
     this.counter = 0;
